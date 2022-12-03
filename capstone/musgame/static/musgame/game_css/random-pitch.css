@@ -1,0 +1,117 @@
+.circle-diagram {
+    width: auto;
+}
+
+tr {
+    display: flex;
+    justify-content: center;
+}
+
+td {
+    margin: auto 0px;
+}
+
+.gap1 {
+    margin: 2% 17%;
+}
+
+.gap2 {
+    margin: 12% 35%;
+}
+
+.gap3 {
+    margin: 9% 42%;
+}
+
+#container, #pitch {
+    display: flex;
+    position: relative;
+}
+
+#pitch {
+    padding-left: 10%;
+    padding-right: 6%;
+}
+
+#action {
+    padding-left: 6%;
+    padding-right: 10%;
+}
+
+#pitch-button {
+    margin: 5px;
+    font-size: 20px;
+    width: 75px;
+    text-align: center;
+}
+
+@media screen and (min-width: 500px){
+    #pitch-button {
+        font-size: 30px;
+        width: 90px;
+    }
+}
+
+#random-button, #full-button {
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    width: 100%;
+}
+
+#random-button {
+    height: 15%;
+}
+
+#pre-config {
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    justify-content: center;
+}
+
+#pre-config-button {
+    margin: 10px;
+    padding: 10px;
+}
+
+#result-container {
+    height: 25%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+}
+
+#result {
+    font-size: 28px;
+}
+
+.off {
+    background-color: lightgray; 
+}
+
+.on {
+    background-color: lightgreen;
+}
+
+@media screen and (min-width: 500px){
+    .circle-diagram {
+        min-width: 500px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    #container {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    #pitch, #action {
+        padding-left: 1%;
+        padding-right: 1%;
+    }
+}
+
+button:hover {
+    background-color: lightyellow;
+}

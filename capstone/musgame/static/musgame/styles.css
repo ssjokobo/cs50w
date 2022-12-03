@@ -1,0 +1,74 @@
+h1, h2, h3, p, a {
+    text-align: center;
+    padding-top: 10px;
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+
+#game-card:hover {
+    box-shadow: 2px 2px 5px;
+}
+
+
+#game-link-wrap {
+    width: auto;
+    min-width: 400px;
+    max-width: 30%;
+}
+
+#game-card {
+    border: 3px outset lightgray;
+    border-radius: 25px;
+    height: 360px;
+}
+
+#card-container {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+#category-link {
+    border: 3px outset lightgray;
+    border-radius: 25px;
+    height: auto;
+    width: auto;
+    min-width: 300px;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+
+#category-link:hover {
+    box-shadow: 2px 2px 5px;
+}
+
+
+#favorite-button {
+    margin-left: 10px;
+    font-size: 12px;
+    height: 30px;
+    margin-top: 10px;
+}
+
+
+#title {
+    display: flex;
+    justify-content: center;
+}
+
+
+#login-container form {
+    display: flex;
+    justify-content: center;
+}
+
+#paging {
+    margin-top: 20px;
+}

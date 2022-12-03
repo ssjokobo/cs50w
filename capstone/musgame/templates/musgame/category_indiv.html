@@ -1,0 +1,59 @@
+{% extends "musgame/layout.html" %}
+{% load static %}
+
+{% block body %}
+    {% if user.is_authenticated %}
+        <h1>Hello {{ user.username }}!</h1>
+    {% endif %}
+
+    {% if category_name %}
+        <h2>{{ category_name }}</h2>
+    {% else %}
+        <h2>All Games and Tools</h2>
+    {% endif %}
+    
+    <div id="card-container">
+    {% for game in page_obj %}
+    
+        <a id="game-link-wrap" href="{% url 'action' game.id %}">
+            <div id="game-card">
+                <h4>{{ game.title }}</h4>
+                <h6>Category: {{ game.get_category_display }}</h6>
+                <img src="../{{ game.get_photo }}" width="300px" height="200">
+                <p>{{ game.description }}</p>
+            </div>
+        </a>
+
+    {% empty %}
+
+        <h3>No Game Yet</h3>
+
+    {% endfor %}
+    </div>
+
+    <!-- Page nav -->
+    <div id="paging">
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+            </span>
+        </div>
+
+        <nav aria-label="page-nav">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="?page=1">FIRST</a></li>
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">PREV</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">NEXT</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">LAST</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+{% endblock %}

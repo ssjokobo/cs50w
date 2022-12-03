@@ -1,0 +1,23 @@
+{% extends "musgame/layout.html" %}
+{% load static %}
+
+{% block body %}
+    <div id="title">
+        <h1>{{ game.title }}</h1>
+        {% if user.is_authenticated %}
+            {% if favorite %}
+                <button id="favorite-button" value="{{ game.pk }}">Faved</button>
+            {% else %}
+                <button id="favorite-button" value="{{ game.pk }}">Fave</button>
+            {% endif %}
+        {% endif %}
+    </div>
+    <p>{{ game.description }}</p>
+    {% include game_html %}
+{% endblock %}
+
+{% block script %}
+    <script src="https://cdn.jsdelivr.net/npm/vexflow/build/cjs/vexflow.js"></script>
+    <script src="{% static 'musgame/action.js' %}"></script>
+    <script src="{{ game_js }}"></script>
+{% endblock %}

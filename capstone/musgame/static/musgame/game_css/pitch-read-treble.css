@@ -1,0 +1,38 @@
+#output {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+
+#pitch, #accidental, #action {
+    display: flex;
+    position: relative;
+    justify-content: center;
+}
+
+
+#pitch-button {
+    font-size: 30px;
+    margin: 5px;
+    width: auto;
+    
+}
+
+#accidental-button {
+    font-size: 20px;
+    margin: 5px; 
+    width: auto;
+}
+
+#check-button, #next-button {
+    font-size: 20px;
+    margin: 5px;
+    padding: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+button:hover {
+    background-color: lightyellow;
+}
