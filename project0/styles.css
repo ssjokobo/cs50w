@@ -1,0 +1,179 @@
+#adv {
+    color: #d93025;
+    font-weight: normal;
+    font-size: 20px;
+    padding-left: 40px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #ebebeb;
+}
+
+
+#banner-logo {
+    width: 75px;
+    padding: 10px
+}
+
+
+.button {
+    background-color: #F8F8F8;
+    border: 1px solid;
+    border-color: #EEEEEE;
+    border-radius: 5px;
+    width: auto;
+    height: 35px;
+    padding: 10px 20px 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+
+#button_container {
+    display: flex;
+    justify-content: center;
+}
+
+
+.button:hover {
+    cursor: pointer;
+    border-color: lightgray;
+}
+
+
+.button_adv {
+    background-color: #4d90fe;
+    border: 1px solid;
+    border-color: #EEEEEE;
+    border-radius: 5px;
+    width: auto;
+    height: 35px;
+    padding: 10px 20px 25px;
+    margin-left: 121px;
+    color: #ffffff;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+.button_adv:hover {
+    cursor: pointer;
+    border-color: #3079ed;
+}
+
+
+#container {
+    display: block;
+    position: relative;
+}
+
+
+.field_center {
+    padding-left: 20px;
+    width: 500px;
+    height: 40px;
+    border-radius: 25px;
+    border: 1px solid;
+    border-color: #DDDDDD;
+    display: block;
+    margin: 10px auto 20px;
+}
+
+
+h3 {
+    font-weight: normal;
+    font-size: 16px;
+    padding-left: 40px;
+}
+
+
+html {
+    font-family: arial;
+}
+
+
+
+#img {
+    color: #4285f4;
+    display: block;
+    padding-left: 300px;
+    margin-top: -50px;
+    text-align: center;
+    font-weight: normal;
+    font-size: 20px;
+}
+
+
+input:focus {
+    outline: none;
+}
+
+
+.link {
+    width: 50px;
+    padding: 10px;
+}
+
+
+.link:hover {
+    text-decoration: underline;
+}
+
+
+#logo {
+    width: 400px;
+    display: block;
+    margin: 150px auto 20px;
+}
+
+
+table {
+    width: 100%;
+}
+
+
+tr {
+    text-align: left;
+}
+
+
+tr > #col-1 {
+    width: 220px;
+    font-size: 12px;
+    padding-left: 40px;
+}
+
+
+td {
+    padding-bottom: 10px;
+}
+
+
+td > input {
+    width: 50%;
+    min-width: 167px;
+    height: 25px;
+    border: 1px solid;
+    border-color: #EEEEEE;
+    box-shadow: 1px 1px 1px 1px #DDDDDD;
+}
+
+
+#text {
+    color: #555555;
+    text-decoration: none;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+#text_field {
+    color: #555555;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+#text_field:hover {
+    border-color: lightgray;
+    box-shadow: 2px 2px 2px 2px #DDDDDD;
+}

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Images</title>
+        <link href="styles.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <table id="link_container">
+                <tr>
+                    <td>
+                        <img id="banner-logo" src="google_logo.png">
+                    </td>
+                    <td class="link">
+                        <a id="text" href="index.html">Home</a>
+                    </td>
+                    <td class="link">
+                        <a id="text" href="images.html">Images</a>
+                    </td>
+                </tr>
+            </table>
+            <h2 id="adv">Advanced Search</h2>
+        </header>
+        <div>
+            <form action="https://google.com/search">
+                <table>
+                    <thead>
+                        <tr>
+                            <th><h3>Finding pages with...</h3></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td id="col-1">all these words:</td>
+                            <td><input id="text_field" type="text" name="as_q"></td>
+                        </tr>
+                        <tr>
+                            <td id="col-1">this exact word or phrase:</td>
+                            <td><input id="text_field" type="text" name="as_epq"></td>
+                        </tr>
+                        <tr>
+                            <td id="col-1">any of these words:</td>
+                            <td><input id="text_field" type="text" name="as_oq"></td>
+                        </tr>
+                        <tr>
+                            <td id="col-1">none of these words:</td>
+                            <td><input id="text_field" type="text" name="as_eq"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div id="button_container">
+                    <input class="button_adv" type="submit" value="Advanced Search">
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
