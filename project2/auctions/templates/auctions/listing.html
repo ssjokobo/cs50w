@@ -1,0 +1,96 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    <h2>Listing: {{ listing.item_name }}</h2>
+
+    <!-- Open or close the listing -->
+    <div class="section">
+        {% if listing.active %}
+            <h5>🟢 Is Active</h5>
+        {% else %}
+            <h5>🔴 Is Closed</h5>
+        {% endif %}
+
+        {% if user.is_authenticated and user == listing.seller_id and listing.active %}
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="toggle_active">
+            <input class="btn btn-primary" type="submit" value="Close the Bidding">
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Watchlist -->
+    <div class="section">
+        {% if user.is_authenticated %}
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="toggle_watchlist">
+            {% if is_watched %}
+                <h5>☑️ In Your Watchlist</h5>
+                <input class="btn btn-primary" type="submit" value="Remove from my watchlist">
+            {% else %}
+                <input class="btn btn-primary" type="submit" value="Add to my watchlist">
+            {% endif %}
+        </form>
+        {% endif %}
+    </div>
+
+    <!-- Details -->
+    <img src="{{ listing.img_src }}" width="600" height="400">
+    <p>{{ listing.description }}</p>
+    <h3>Current Price: ${{ listing.current_price }}</h3>
+
+    <!-- Bidding section -->
+    {% if user.is_authenticated and user == last_bidder.user_id and not listing.active %}
+        <h3>Congratulations! You won the bidding! 🎉</h3>
+    {% endif %}
+    <div class="section">
+        <h6>{{ bid_times }} bid(s) so far</h6>
+        {% if user.is_authenticated and user != listing.seller_id and listing.active %}
+            <form action="{% url 'listing' listing.id %}" method="post">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="bid">
+                <input class="form-control" type="number" min="{{ min_bid }}" name="new_bid" placeholder="Bid">
+                <input class="btn btn-primary" type="submit" value="Bid">
+            </form>
+        {% endif %}
+    </div>
+
+    <!-- More Details -->
+    <div class="section">
+        <h3>Details:</h3>
+        <ul>
+            <li>Listed by: {{ listing.seller_id }}</li>
+            <li>Category: {{ category }}</li>
+            <li>Posted time: {{ listing.timestamp }}</li>
+        </ul>
+    </div>
+
+    <!-- Comment section -->
+    <div>
+        <h3>Comments</h3>
+        {% for comment in comments %}
+            <div class="section">
+                <h5>{{ comment.user_id }}</h5>
+                <p>{{ comment.timestamp }}</p>
+                <p>{{ comment.comment }}</p>
+            </div>
+        {% empty %}
+            <h5>No comment yet.</h5>
+        {% endfor %}
+        
+        {% if user.is_authenticated %}
+        <form action="{% url 'listing' listing.id %}" method="post">
+            {% csrf_token %}
+            <input type="hidden" name="action" value="comment">
+            {% for field in comment_form %}
+                {{ field.label_tag }}<br>
+                {{ field }}<br>
+            {% endfor %}
+            <input class="btn btn-primary" type="submit" value="Post">
+        </form>
+        {% endif %}
+    </div>
+
+{% endblock %}
