@@ -1,0 +1,83 @@
+div {
+    padding: 5px;
+}
+
+#profile-view, h1 {
+    text-align: center;
+}
+
+#compose {
+    padding: 15px;
+    margin: 10px auto;
+    width: auto;
+    max-width: 800px;
+    min-width: 200px;
+    text-align: right;
+}
+
+div #post {
+    padding: 15px;
+    margin: 10px auto;
+    width: auto;
+    max-width: 800px;
+    min-width: 200px;
+    border-style: solid;
+    border-color: #eeeeee;
+    border-radius: 1%;
+}
+
+.row1-container {
+    display: grid;
+    grid-template-columns: 200px 200px;
+    align-items: start;
+    justify-content: space-between;
+}
+
+#profile-link {
+    display: inline
+}
+
+.timestamp {
+    display: inline;
+    font-size: 12px;
+    align-self: right;
+    text-align: right;
+}
+
+.row2-container {
+    display: grid;
+    grid-template-columns: 200px 100px;
+    align-items: start;
+    justify-content: space-between;
+}
+
+#like-button {
+    display: inline;
+}
+
+.like-count {
+    display: inline;
+}
+
+
+.row3-container {
+    display: grid;
+    grid-template-columns: 600px 50px;
+    align-items: start;
+    justify-content: space-between;
+}
+
+#edit-button {
+    display: inline;
+}
+
+.post-content {
+    display: inline;
+}
+
+.edit-form {
+    display: grid;
+    grid-template-columns: 600px 200px;
+    align-items: start;
+    justify-content: space-between;
+}

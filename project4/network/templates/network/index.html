@@ -1,0 +1,133 @@
+{% extends "network/layout.html" %}
+{% load static %}
+
+{% block body %}
+
+    {% if wall_type == "Following" and not user.is_authenticated %}
+        <h1>Please Login or Register</h1>
+    {% else %}
+
+        {% if wall_type is not None %}
+            <h1>{{ wall_type }}</h1>
+        {% endif %}
+
+        <!-- Profile view -->
+        {% if follow_obj is not None %}
+            <div id="profile-view">
+                <h1>{{ profile_obj.username }}</h1>
+
+                {% if follow_obj.following_count > 1 %}
+                    <h4 id="following-count">{{ follow_obj.following_count }} Followings</h4>
+                {% else %}
+                    <h4 id="following-count">{{ follow_obj.following_count }} Following</h4>
+                {% endif %}
+
+                {% if follow_obj.follower_count > 1 %}
+                    <h4 id="follower-count">{{ follow_obj.follower_count }} Followers</h4>
+                {% else %}
+                    <h4 id="follower-count">{{ follow_obj.follower_count }} Follower</h4>
+                {% endif %}
+
+                {% if user.is_authenticated and user.id != profile_obj.id %}
+                    <button class="btn btn-sm btn-outline-primary" id="follow-button" value="{{ follow_obj.id }}">
+                        {% if user.id in follow_obj.follower_id_list %}
+                            Followed    
+                        {% else %}
+                            Follow
+                        {% endif %}
+                    </button>
+                {% endif %}
+            </div>
+        {% endif %}
+
+        <!-- Posting form -->
+        {% if user.is_authenticated %}
+            {% if user.id == profile_obj.id or wall_type is not None %}
+                <div id="compose">
+                    <form action="{% url 'compose' %}" method="post">
+                        {% csrf_token %}
+                        <textarea class="form-control" id="content" name="content" placeholder="Type in your thoughts" required></textarea>
+                        <input type="submit" class="btn btn-primary" value="Post"/>
+                    </form>
+                </div>
+            {% endif %}
+        {% endif %}
+
+        {% for post in page_obj %}
+
+            <!-- Posts -->
+            <div id="post">
+                <div class="row1-container">
+                    <h5 id="profile-link"><a href="{% url 'profile' post.author.id %}">{{ post.author.username }}</a></h5>
+                    <p class="timestamp">{{ post.timestamp }}</p>
+                </div>
+                
+                <div class="row2-container">
+                    {% if post.like_count == 1 %}
+                        <p class="like-count" id="like-count-{{ post.pk }}">{{ post.like_count }} Like</p>
+                    {% elif post.like_count > 1 %}
+                        <p class="like-count" id="like-count-{{ post.pk }}">{{ post.like_count }} Likes</p>
+                    {% else %}
+                        <p class="like-count" id="like-count-{{ post.pk }}"></p>
+                    {% endif %}
+
+
+                    {% if user.is_authenticated %}
+                        <button class="btn btn-sm btn-outline-primary" id="like-button" value="{{ post.pk }}">
+                            {% if user in post.likers %}                   
+                                Liked
+                            {% else %}
+                                Like
+                            {% endif %}
+                        </button>
+                    {% endif %}
+                </div>
+                
+                <div class="row3-container">
+                    <p class="post-content" id="post-content-{{ post.pk }}">{{ post.content }}</p>
+                    
+                    {% if user == post.author %}
+                        <button class="btn btn-sm btn-outline-primary" id="edit-button" value="{{ post.pk }}">
+                            Edit
+                        </button>
+                        <div id="edit-view-{{ post.pk }}">
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+        {% empty %}
+
+            <h3>No Post Yet</h3>
+
+        {% endfor %}
+        
+        <!-- Page nav -->
+        <div class="pagination justify-content-center">
+            <span class="step-links">
+                <span class="current">
+                    Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+                </span>
+            </span>
+        </div>
+
+        <nav aria-label="page-nav">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="?page=1">FIRST</a></li>
+                {% if page_obj.has_previous %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">PREV</a></li>
+                {% endif %}
+                <li class="page-item"><a class="page-link" href="#">{{ page_obj.number }}</a></li>
+                {% if page_obj.has_next %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">NEXT</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">LAST</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    {% endif %}
+
+{% endblock %}
+
+{% block script %}
+    <script src="{% static 'network/index.js' %}"></script>
+{% endblock %}
